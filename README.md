@@ -10,7 +10,9 @@ This section provides an overview of the components implemented in the project.
 
 ### Sensors
 
-| Sensor Name       | Variable    | Type      | Pin Count | Variable/Id Count |
+The following sensors have been integrated into the system:
+
+|  Name       | Variable    | Type      | Pin Count | Variable/Id Count |
 |-------------------|---------------|-----------|-----------|-------------------|
 | ArduinoNoiseSensor | Sound         | Analog    | 1         | 1                 |
 | ArduinoPotentiometer | Rotation  | Analog    | 1         | 1                 |
@@ -24,7 +26,9 @@ This section provides an overview of the components implemented in the project.
 
 ### Actuators
 
-| Actuator Name     | Phenomenon    | Type      | Pin Count | Variable/Id Count |
+The following actuators have been implemented in the system:
+
+|  Name     | Phenomenon    | Type      | Pin Count | Variable/Id Count |
 |-------------------|---------------|-----------|-----------|-------------------|
 | ArduinoLed        | Light         | Digital   | 1         | 1                 |
 | ArduinoLedPWM     | Light         | Analog    | 1         | 1                 |
@@ -35,14 +39,14 @@ This section provides an overview of the components implemented in the project.
 
 ### Embedded systems
 
+The following embedded systems have been implemented in the system:
 
 - Arduino Mega using OSOYOO MEGA-IoT Shield.
 - NodeMCU v0.9
 
 ### Communication protocol
 
-- MQTT
-
+In the system, only the Message Queuing Telemetry Transport (MQTT) protocol has been implemented for communication, as it provides highly efficient and secure communication.
 
 ## User Manual
 
