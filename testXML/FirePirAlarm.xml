@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fuzzySystem xmlns="http://www.ieee1855.org" name="FirePirAlarm">
+    <knowledgeBase>
+        <fuzzyVariable name="fire" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="fire_on" complement="false">
+                <rightLinearShape param1="90.0" param2="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="fire_off" complement="false">
+                <leftLinearShape param1="0.0" param2="10.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="motion" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="motion_on" complement="false">
+                <rightLinearShape param1="90.0" param2="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="motion_off" complement="false">
+                <leftLinearShape param1="0.0" param2="10.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="alarm" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="alarm_on" complement="false">
+                <rightLinearShape param1="90.0" param2="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="alarm_off" complement="false">
+                <leftLinearShape param1="0.0" param2="10.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="buzzer" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="buzzer_off" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="buzzer_on" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="red" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="red_off" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="red_on" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="green" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="green_off" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="green_on" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="blue" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="blue_off" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="blue_on" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+    </knowledgeBase>
+    <mamdaniRuleBase name="rules" activationMethod="MIN" andMethod="MIN" orMethod="MAX">
+        <rule name="rule1" orMethod="MAX" connector="or" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>fire</variable>
+                    <term>fire_on</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>red_on</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>green_off</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>blue_off</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>buzzer_on</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule2" andMethod="min" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>motion</variable>
+                    <term>motion_on</term>
+                </clause>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>alarm_on</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>red_on</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>green_off</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>blue_off</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>buzzer_on</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule3" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>fire</variable>
+                    <term>fire_off</term>
+                </clause>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>alarm_off</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>red_off</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>green_on</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>blue_off</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>buzzer_off</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule4" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>alarm_on</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>fire_off</term>
+                </clause>
+                <clause>
+                    <variable>motion</variable>
+                    <term>motion_off</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>red_off</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>green_off</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>blue_on</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>buzzer_off</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+    </mamdaniRuleBase>
+</fuzzySystem>

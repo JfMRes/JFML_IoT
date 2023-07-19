@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fuzzySystem xmlns="http://www.ieee1855.org" name="PotenciometroServo">
+    <knowledgeBase>
+        <fuzzyVariable name="distance" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="low" complement="false">
+                <leftLinearShape param1="0.0" param2="30.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="med" complement="false">
+                <triangularShape param1="30.0" param2="50.0" param3="60.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="alta" complement="false">
+                <rightLinearShape param1="60.0" param2="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="R" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="R_off" complement="false">
+                <leftLinearShape param1="0.0" param2="10.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="R_on" complement="false">
+                <rightLinearShape param1="90.0" param2="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="G" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="G_off" complement="false">
+                <leftLinearShape param1="0.0" param2="10.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="G_on" complement="false">
+                <rightLinearShape param1="90.0" param2="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="B" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="B_off" complement="false">
+                <leftLinearShape param1="0.0" param2="10.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="B_on" complement="false">
+                <rightLinearShape param1="90.0" param2="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+    </knowledgeBase>
+    <mamdaniRuleBase name="rules" activationMethod="MIN" andMethod="MIN" orMethod="MAX">
+        <rule name="rule1" orMethod="MAX" connector="or" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>distance</variable>
+                    <term>low</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>R</variable>
+                        <term>R_on</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule2" orMethod="MAX" connector="or" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>distance</variable>
+                    <term>med</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>G</variable>
+                        <term>G_on</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule3" orMethod="MAX" connector="or" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>distance</variable>
+                    <term>alta</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>B</variable>
+                        <term>B_on</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+    </mamdaniRuleBase>
+</fuzzySystem>
