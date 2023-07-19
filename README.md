@@ -13,17 +13,20 @@ This class manages the entire system, including inference, communication managem
 JFML_IoT_Core IoT_system = new JFML_IoT_Core();
 ```
 Next, you need to specify the JFML system that will perform the inference. Assuming you have a JFML file in XML format, you can load it as follows:
+```java
 File xml = new File("./testXML/FirePirAlarm.xml");
 FuzzyInferenceSystem jfml = JFML.load(xml);
 IoT_system.setFuzzyInferenceSystem(jfml);
-
+```
 Finally, you can set the refresh rate for the system during execution by specifying the value in milliseconds:
+```java
 IoT_system.setDelay(1000);
-
+```
 ###  Communication Class
 This class manages the communication within the system. It includes the MQTT class as a subclass. To create an MQTT object, use the following constructor:
+```java
 MQTT mqtt = new MQTT(address, port, user, password, qos);
-
+```
 The required parameters for constructing an MQTT object are:
 - address: Represents the address of the MQTT broker to connect to.
 - port: Specifies the port of the MQTT broker.
@@ -47,14 +50,16 @@ The parameters for device creation are as follows:
 - id1, id2, id3: String identifiers specific to the device. The number of identifiers can vary from 1 to 3.
 
 To select the pins used for the electrical connection of the device, use the following function:
+```java
 device.setPin(pin1, pin2, pin3);
-
+```
 Each of the parameters pin1, pin2, and pin3 is a String. The number of pins, ranging from 1 to 3, depends on the device's characteristics.
 
 To set the maximum reading and writing levels for the system, use the following methods:
+```java
 device.setMinMaxValue(id, min, max);
 device.setMinMaxReadValue(id, min, max);
-
+```
 The setMinMaxValue function selects the ranges used within JFML, while setMinMaxReadValue sets the maximum range of values the embedded system can read or write to the device. Both functions require the following parameters:
 - id: The ID string for the range to modify.
 - min, max: The minimum and maximum values of the desired range.
@@ -63,32 +68,40 @@ The supported devices include sensors such as SR04, DHT11, LDR, PIR, pushbutton,
 
 ### Embedded Class
 The Embedded class represents each embedded system used in the IoT ensemble. It serves as a container for the input and output devices used. In this case, we will use the EmbeddedSystem class as an example, even though it is an abstract class and cannot be directly used. The constructor for the EmbeddedSystem class is as follows:
+```java
 EmbeddedSystem embedded = new EmbeddedSystem(name, communication);
-
+```
 The parameters represent:
 - name: The name of the device, used for visualization in debug mode (string format).
 - communication: An instance of the Communication class (or a subclass such as MQTT) used for communication.
 
 If the device is connected via WiFi, use the following function to specify the communication credentials, where both parameters are strings representing the SSID and the password, respectively:
+```java
 embedded.setWifi(SSID, WiFiPassword);
-
+```
 To modify the maximum timeout allowed for the embedded system, use the following function, specifying the value in milliseconds:
+```java
 arduino1.setTimeOut(3000);
-
+```
 Once the embedded systems and their devices are created, you need to add the devices to the respective embedded system using the following function:
+```java
 embedded.addDevice(buzzer);
-
+```
 After adding all the devices, you need to add the embedded system to the main system:
+```java
 IoT_System.addEmbedded(embedded);
-
+```
 ### Generating Embedded System Codes
 After adding all the embedded systems with their respective devices to the main class, you need to generate the codes for each embedded system before starting the system. Use the following function, providing the root path where you want to create the codes:
+```java
 IoT_system.buildCode("./testEmbeddedsCodes");
+```
 
 ### Starting the System
 Once the configuration and code generation for each embedded system are complete, you can start the system by running the following command:
+```java
 IoT_system.run();
-
+```
 This command initiates an infinite loop that manages the system and displays the values on the screen.
 
 ### Debugging
