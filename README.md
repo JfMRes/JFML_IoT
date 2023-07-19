@@ -2,6 +2,38 @@
 
 JFML IoT is an open source Java library designed to facilitate the integration of Fuzzy-Base Systems (FRBS) into Internet of Things (IoT) enviroments. Using Java Fuzzy Markup Language (JFML) as engine. JFML is built on the IEEE 1855-2016 standard, simplifying the representation of fuzzy rule-based systems with a standard XML-based FML language.
 
+## Implemented components
+
+### Sensors
+
+| Sensor Name       | Variable    | Type      | Pin Count | Variable/Id Count |
+|-------------------|---------------|-----------|-----------|-------------------|
+| ArduinoNoiseSensor | Sound         | Analog    | 1         | 1                 |
+| ArduinoPotentiometer | Rotation  | Analog    | 1         | 1                 |
+| ArduinoFireSensor | Fire          | Digital   | 1         | 1                 |
+| ArduinoDHT11      | Temperature and Humidity | Analog | 1 | 2                 |
+| ArduinoSR04       | Distance      | Analog    | 2         | 1                 |
+| ArduinoLDR        | Luminosity    | Analog    | 1         | 1                 |
+| ArduinoPIR        | Presence      | Digital   | 1         | 1                 |
+| ArduinoPushButton | Interaction   | Digital   | 1         | 1                 |
+
+
+### Actuators
+
+| Actuator Name     | Phenomenon    | Type      | Pin Count | Variable/Id Count |
+|-------------------|---------------|-----------|-----------|-------------------|
+| ArduinoLed        | Light         | Digital   | 1         | 1                 |
+| ArduinoLedPWM     | Light         | Analog    | 1         | 1                 |
+| ArduinoLedRGB     | Light         | Digital   | 3         | 3                 |
+| ArduinoBuzzer     | Sound         | Digital   | 1         | 1                 |
+| ArduinoServo      | Mechanical    | Analog    | 1         | 1                 |
+
+
+### Embedded systems
+
+### Communication protocol
+
+
 ## User Manual
 
 ### Introduction
@@ -105,6 +137,6 @@ IoT_system.run();
 This command initiates an infinite loop that manages the system and displays the values on the screen.
 
 ### Debugging
-During the execution loop, you can monitor the current status of the system. It shows the connection status of each embedded system, indicating whether there is a timeout or if the connection is successful. It also displays the state of each associated device, including the value and the timestamp of the last received value. Each data entry is preceded by a timestamp indicating the last connection time with the system.
+During the execution loop, you can monitor the current status of the system. It shows the connection status of each embedded system, indicating whether there is a timeout or if the connection is successful. It also displays the state of each associated device, including the value and the timestamp of the last received value. Each data entry is preceded by a timestamp indicating the last connection time with the system. As example 
 
 
