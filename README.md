@@ -2,7 +2,11 @@
 
 JFML IoT is an open source Java library designed to facilitate the integration of Fuzzy-Base Systems (FRBS) into Internet of Things (IoT) enviroments. Using Java Fuzzy Markup Language (JFML) as engine. JFML is built on the IEEE 1855-2016 standard, simplifying the representation of fuzzy rule-based systems with a standard XML-based FML language.
 
+The entire project has been created with extensibility in mind. The abstract classes represent the basic functionality of all objects, making it easier to extend the project and add new classes to expand its capabilities.
+
 ## Implemented components
+
+This section provides an overview of the components implemented in the project.
 
 ### Sensors
 
@@ -31,7 +35,13 @@ JFML IoT is an open source Java library designed to facilitate the integration o
 
 ### Embedded systems
 
+
+- Arduino Mega using OSOYOO MEGA-IoT Shield.
+- NodeMCU v0.9
+
 ### Communication protocol
+
+- MQTT
 
 
 ## User Manual
