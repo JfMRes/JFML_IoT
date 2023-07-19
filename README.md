@@ -4,8 +4,6 @@ JFML IoT is an open source Java library designed to facilitate the integration o
 
 The entire project has been created with extensibility in mind. The abstract classes represent the basic functionality of all objects, making it easier to extend the project and add new classes to expand its capabilities.
 
-## 
-
 You can download the full project or download the .jar file to import in your project [from releases](https://github.com/JfMRes/JFML_IoT/releases)
 
 ## Implemented components
