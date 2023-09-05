@@ -1,4 +1,7 @@
-![JFML IoT](https://github.com/JfMRes/JFML_IoT/blob/main/logo.png)
+<p align="center">
+  <img src="https://github.com/JfMRes/JFML_IoT/blob/main/logo.png" alt="JFML IoT" width="30%">
+</p>
+
 
 # JFML IoT: A Java library for IoT using JFML for fuzzy control. 
 
