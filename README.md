@@ -158,6 +158,5 @@ IoT_system.run();
 This command initiates an infinite loop that manages the system and displays the values on the screen.
 
 ### Debugging
-During the execution loop, you can monitor the current status of the system. It shows the connection status of each embedded system, indicating whether there is a timeout or if the connection is successful. It also displays the state of each associated device, including the value and the timestamp of the last received value. Each data entry is preceded by a timestamp indicating the last connection time with the system. As example 
-
+During the execution loop, you can monitor the current status of the system. It shows the connection status of each embedded system, indicating whether there is a timeout or if the connection is successful. It also displays the state of each associated device, including the value and the timestamp of the last received value. Each data entry is preceded by a timestamp indicating the last connection time with the system.
 
