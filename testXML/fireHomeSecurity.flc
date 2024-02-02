@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fuzzySystem xmlns="http://www.ieee1855.org" name="fireHomeSecurity">
+    <knowledgeBase>
+        <fuzzyVariable name="alarm" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="deactivated" complement="false">
+                <leftLinearShape param1="0.0" param2="20.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="activated" complement="false">
+                <rightLinearShape param1="80.0" param2="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="fire" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="cold" complement="false">
+                <trapezoidShape param1="0.0" param2="0.0" param3="20.0" param4="30.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="warm" complement="false">
+                <trapezoidShape param1="20.0" param2="30.0" param3="40.0" param4="50.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="hot" complement="false">
+                <trapezoidShape param1="40.0" param2="50.0" param3="80.0" param4="90.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="extremely_hot" complement="false">
+                <trapezoidShape param1="80.0" param2="90.0" param3="100.0" param4="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="motion" scale="" domainleft="0.0" domainright="100.0" type="input">
+            <fuzzyTerm name="no_motion" complement="false">
+                <trapezoidShape param1="0.0" param2="0.0" param3="5.0" param4="10.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="medium_motion" complement="false">
+                <trapezoidShape param1="5.0" param2="10.0" param3="60.0" param4="70.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="high_motion" complement="false">
+                <trapezoidShape param1="60.0" param2="70.0" param3="100.0" param4="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="buzzer" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="deactivated" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="low" complement="false">
+                <trapezoidShape param1="0.0" param2="10.0" param3="30.0" param4="40.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="middle" complement="false">
+                <trapezoidShape param1="30.0" param2="40.0" param3="80.0" param4="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="high" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="red" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="very_low" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="low" complement="false">
+                <trapezoidShape param1="0.0" param2="5.0" param3="30.0" param4="40.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="middle" complement="false">
+                <trapezoidShape param1="30.0" param2="40.0" param3="60.0" param4="70.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="high" complement="false">
+                <trapezoidShape param1="60.0" param2="70.0" param3="95.0" param4="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="very_high" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="green" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="very_low" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            </fuzzyTerm>
+            <fuzzyTerm name="low" complement="false">
+                <trapezoidShape param1="0.0" param2="5.0" param3="30.0" param4="40.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="middle" complement="false">
+                <trapezoidShape param1="30.0" param2="40.0" param3="60.0" param4="70.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="high" complement="false">
+                <trapezoidShape param1="60.0" param2="70.0" param3="95.0" param4="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="very_high" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+        <fuzzyVariable name="blue" scale="" domainleft="0.0" domainright="100.0" type="OUTPUT">
+            <fuzzyTerm name="very_low" complement="false">
+                <singletonShape param1="0.0"/>
+            </fuzzyTerm>
+            </fuzzyTerm>
+            <fuzzyTerm name="low" complement="false">
+                <trapezoidShape param1="0.0" param2="5.0" param3="30.0" param4="40.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="middle" complement="false">
+                <trapezoidShape param1="30.0" param2="40.0" param3="60.0" param4="70.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="high" complement="false">
+                <trapezoidShape param1="60.0" param2="70.0" param3="95.0" param4="100.0"/>
+            </fuzzyTerm>
+            <fuzzyTerm name="very_high" complement="false">
+                <singletonShape param1="100.0"/>
+            </fuzzyTerm>
+        </fuzzyVariable>
+    </knowledgeBase>
+    <mamdaniRuleBase name="rules" activationMethod="MIN" andMethod="MIN" orMethod="MAX">
+        <rule name="rule1" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>deactivated</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>deactivated</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>        
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>activated</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>cold</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_high</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>deactivated</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>        
+        <rule name="rule2" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>activated</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>extremely_hot</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_high</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>high</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule3" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>activated</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>hot</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_high</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>high</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>
+        <rule name="rule4" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>activated</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>warm</term>
+                </clause>
+                <clause>
+                    <variable>motion</variable>
+                    <term>no_motion</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_high</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>middle</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>    
+        <rule name="rule5" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>activated</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>warm</term>
+                </clause>
+                <clause>
+                    <variable>motion</variable>
+                    <term>medium_motion</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_high</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>deactivated</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>    
+        <rule name="rule6" andMethod="MIN" connector="and" weight="1.0">
+            <antecedent>
+                <clause>
+                    <variable>alarm</variable>
+                    <term>activated</term>
+                </clause>
+                <clause>
+                    <variable>fire</variable>
+                    <term>warm</term>
+                </clause>
+                <clause>
+                    <variable>motion</variable>
+                    <term>high_motion</term>
+                </clause>
+            </antecedent>
+            <consequent>
+                <then>
+                    <clause>
+                        <variable>red</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>green</variable>
+                        <term>very_high</term>
+                    </clause>
+                    <clause>
+                        <variable>blue</variable>
+                        <term>very_low</term>
+                    </clause>
+                    <clause>
+                        <variable>buzzer</variable>
+                        <term>deactivated</term>
+                    </clause>
+                </then>
+            </consequent>
+        </rule>      
+        </mamdaniRuleBase>
+</fuzzySystem>
